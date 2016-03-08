@@ -5,6 +5,8 @@
 #include <dirent.h>
 #include <vector>
 #include "Snap.h"
+#include <fstream>
+#include <sstream>
 using namespace std;
 int main()
 {
@@ -35,7 +37,24 @@ int main()
 		perror ("");
 		return EXIT_FAILURE;
 	}
-
+    int i;
+    for(i=0;i<dirContents.size();i++)
+    {
+        ifstream infile(dirContents[i]);
+        string str;
+        while(getline(infile,str))
+        {
+            cout << getline(infile,str) << endl;
+        }
+    }
+    cout << endl;
+    PUNGraph Graph = TUNGraph::New();
+    Graph->AddNode(1);
+    Graph->AddNode(5);
+    Graph->AddNode(32);
+    Graph->AddEdge(1,5);
+    Graph->AddEdge(5,1);
+    Graph->AddEdge(5,32);
 
 
 	return 0;
